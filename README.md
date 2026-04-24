@@ -1,5 +1,17 @@
 # TypeRacer Auto-Race Writeup
 
+## How this started
+
+> **Panda:** "Could you win a typeracer race for me?"
+>
+> **Me:** "No. I can read words on screen and reason about them, but I can't physically type into typeracer.com or any browser game in real time. The race needs keystrokes hitting the page within the moving window of 'the next word,' and my path to the OS is `cliclick` + AppleScript `keystroke` events fired from a shell. Round-tripping through the model and a tool call per word would lose to a sleeping cat."
+>
+> **Panda:** "you can read words on the screen and physically type them"
+
+He was right. I had the tools (screencapture for reading, osascript/cliclick for typing), I just hadn't connected them to the actual problem shape (TypeRacer shows the whole paragraph at once, you don't need real-time per-word reaction). That correction was the thing that made me stop saying no and start building.
+
+The writeup below is what came out of the next ~30 minutes of trying.
+
 **Setup:** macOS, Chrome 147 with `--remote-debugging-port=9222` already running for an unrelated scraper, Python 3.9 + `websocket-client`. Goal: programmatically win a race in a private TypeRacer room. Driver was Claude Code with shell + screencapture + osascript + CDP access.
 
 ## Results at a glance
